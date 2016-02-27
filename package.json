@@ -1,0 +1,39 @@
+{
+  "name": "ly_js",
+  "version": "0.1.0",
+  "description": "ly_js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --display-error-details -p"
+  },
+  "author": "luyun",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^1.0.10"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^3.2.0",
+    "babel": "^6.3.26",
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.3",
+    "babel-plugin-transform-runtime": "^6.5.2",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-runtime": "^5.8.35",
+    "css-loader": "^0.23.1",
+    "eslint": "^2.2.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
+    "node-sass": "^3.4.2",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
+    "vue": "^1.0.16",
+    "vue-hot-reload-api": "^1.3.2",
+    "vue-html-loader": "^1.2.0",
+    "vue-loader": "^8.1.4",
+    "vue-style-loader": "^1.0.0",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.0"
+  }
+}
