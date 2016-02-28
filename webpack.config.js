@@ -1,16 +1,16 @@
-var fs = require('fs');
+// var fs = require('fs');
 //先清空 n-dist 文件夹下的文件
-// var fs = require('fs'),buildPath='./dist/';
-// var folder_exists = fs.existsSync(buildPath);
-// if(folder_exists == true)
-// {
-//    var dirList = fs.readdirSync(buildPath);
-//    dirList.forEach(function(fileName)
-//    {
-//        fs.unlinkSync(buildPath + fileName);
-//    });
-//    console.log("clearing " + buildPath);
-// };
+var fs = require('fs'),buildPath='./dist/';
+var folder_exists = fs.existsSync(buildPath);
+if(folder_exists == true)
+{
+   var dirList = fs.readdirSync(buildPath);
+   dirList.forEach(function(fileName)
+   {
+       fs.unlinkSync(buildPath + fileName);
+   });
+   console.log("clearing " + buildPath);
+};
 
 //readfile
 //先把index.html里面关于style和js的hash值都删除掉，避免在使用 npm run dev 的时候，路径还是压缩后的路劲
@@ -117,7 +117,7 @@ module.exports = {
             {test: /\.vue$/,
               loader: 'vue'
             },
-            {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!cssnext-loader")},
+            {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!cssnext-loader!autoprefixer-loader")},
             {test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192'}, // 内联 base64 URLs, 限定 <=8k 的图片, 其他的用 URL
             {test: /\.woff$/,   loader: "url?limit=10000&minetype=application/font-woff"},
             {test: /\.ttf$/,    loader: "file"},
