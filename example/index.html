@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../dist/css/styles.css">
-	<script type="text/javascript" src="../dist/js/common.js"></script>
-	<script type="text/javascript" src="../dist/js/utils.js"></script>
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+<!-- 	<link rel="stylesheet" type="text/css" href="../dist/css/styles.css">
+<script type="text/javascript" src="../dist/js/common.js"></script>
+<script type="text/javascript" src="../dist/js/utils.js"></script> -->
+	<script type="text/javascript" src="../src/js/fetch.js"></script>
 </head>
 <body>
-	<div class="container">
+<!-- 	<div class="container">
 		我们还太年轻了
 		<form action="index_submit" method="get" accept-charset="utf-8">
 			<div class="form-group">
@@ -27,6 +29,38 @@
 				<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
 			</div>
 		</form>
-	</div>
+	</div> -->
+	<script type="text/javascript">
+	fetch("http://localhost:3000").then(function(res){
+		if(res.ok){
+			res.json().then(function(data){
+				console.log(data);
+			});
+		}else{
+			console.log("Looks k=like the response wasn't perfect.");
+		}
+	},function(e){
+		console.log("fetch failed!",e);
+	});
+
+	fetch("http://localhost:3000",{
+		method: "POST",
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded"
+		},
+		body: "firstName=Nikhil&favColor=blue&password=easytoguess"
+	}).then(function(res){
+		if(res.ok){
+			res.json().then(function(data){
+				console.log(data);
+			});
+		}else{
+			console.log("Oops! You are not authorized.");
+		}
+	},function(e){
+		console.log("Error submitting form!",e);
+	});
+
+	</script>
 </body>
 </html>

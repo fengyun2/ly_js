@@ -1,0 +1,14 @@
+
+{
+    "animals": {
+        "dog": [
+            {
+                "name": "Rufus",
+                "age":15
+            },
+            {
+                "name": "Marty",
+                "age": null
+            }
+        ]
+}
