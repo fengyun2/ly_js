@@ -27,6 +27,7 @@ module.exports = {
       },
       { test: /\.js?$/, loaders: ['babel'], exclude: /node_modules/ },
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+      {test: /\.jsx$/, loader: 'babel-loader!jsx-loader?harmony'},
       // { test: /\.css$/, loader: "style-loader!css-loader" },
       { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader","autoprefixer-loader")},
       { test: /\.less/, loader: 'style-loader!css-loader!less-loader'},
@@ -35,7 +36,7 @@ module.exports = {
   },
   devtool: 'source-map',
   resolve:{
-    extensions:['','.js','.json']
+    extensions:['','.js','.json','jsx']
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
