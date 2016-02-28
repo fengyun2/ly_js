@@ -1,2 +1,0 @@
-webpackJsonp([4,0],[function(n,i){"use strict";Class.extend({init:function(n){this.__config=n,this.bind(),this.render()},get:function(n){return this.__config[n]},set:function(n,i){this.__config[n]=i},bind:function(){},render:function(){},destroy:function(){}})}]);
-//# sourceMappingURL=basejs.js.map

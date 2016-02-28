@@ -1,16 +1,16 @@
-
+var fs = require('fs');
 //先清空 n-dist 文件夹下的文件
-var fs = require('fs'),buildPath='./dist/';
-var folder_exists = fs.existsSync(buildPath);
-if(folder_exists == true)
-{
-   var dirList = fs.readdirSync(buildPath);
-   dirList.forEach(function(fileName)
-   {
-       fs.unlinkSync(buildPath + fileName);
-   });
-   console.log("clearing " + buildPath);
-};
+// var fs = require('fs'),buildPath='./dist/';
+// var folder_exists = fs.existsSync(buildPath);
+// if(folder_exists == true)
+// {
+//    var dirList = fs.readdirSync(buildPath);
+//    dirList.forEach(function(fileName)
+//    {
+//        fs.unlinkSync(buildPath + fileName);
+//    });
+//    console.log("clearing " + buildPath);
+// };
 
 //readfile
 //先把index.html里面关于style和js的hash值都删除掉，避免在使用 npm run dev 的时候，路径还是压缩后的路劲
@@ -82,7 +82,16 @@ plugins.push( new HtmlWebpackPlugin({
 
 
 module.exports = {
-    entry: ["./src/app.js"],
+    // entry: ["./src/app.js"],
+    entry: {
+      // basejs: './src/js/base.js',
+      // store: './src/js/store.js',
+      // utils: './src/js/utils.js',
+      basecss: ['./src/css/reset.css','./src/css/base.css','./src/css/table.css','./src/css/form.css','./src/css/buttons.css','./src/css/page.css']
+
+      // app: ['./b.js']
+      //app: ['webpack/hot/dev-server', './b.js']
+    },
     output: {
         path: "./dist",
         /*
@@ -109,7 +118,7 @@ module.exports = {
               loader: 'vue'
             },
             {test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader?sourceMap!cssnext-loader")},
-            {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}, // 内联 base64 URLs, 限定 <=8k 的图片, 其他的用 URL
+            {test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192'}, // 内联 base64 URLs, 限定 <=8k 的图片, 其他的用 URL
             {test: /\.woff$/,   loader: "url?limit=10000&minetype=application/font-woff"},
             {test: /\.ttf$/,    loader: "file"},
             {test: /\.eot$/,    loader: "file"},
