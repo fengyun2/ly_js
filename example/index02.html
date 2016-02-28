@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="../src/js/fetch.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+var myHeaders = new Headers();
+// var content = '11323';
+console.log(myHeaders);
+myHeaders.append("Content-Type","text/plain");
+// myHeaders.append("Content-Length",content.length.toString());
+// myHeaders.append("X-Custom-Header","ProcessThisImmediately");
+
+var myInit = {
+	method: "GET",
+	headers: myHeaders,
+	mode: 'cors',
+	cache: 'default'
+};
+fetch("http://localhost:3000",myInit).then(function(res){
+		if(res.ok){
+			res.json().then(function(data){
+				console.log(data);
+			});
+		}else{
+			console.log("Oops! You are not authorized.");
+		}
+	},function(e){
+		console.log("Error submitting form!",e);
+	});
+</script>
+</body>
+</html>
