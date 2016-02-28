@@ -4,8 +4,15 @@
   "description": "ly_js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --display-error-details -p"
+    "test": "webpack --config webpack.config.js",
+    "build": "webpack --display-error-details -p",
+    "mb": "export PRODUCTION=1 && webpack --progress --hide-modules",
+    "wb": "set PRODUCTION=1 && webpack --progress --hide-modules",
+    "dev": "webpack-dev-server --progress --profile --colors --inline ",
+    "port": "webpack-dev-server --progress --colors --inline --port 9090 ",
+    "hot": "webpack-dev-server --progress --colors --inline --hot",
+    "cp": "cp -r index.html ./build/ d:/wamp/www/vue",
+    "ip": "webpack-dev-server  --progress --colors --hot --host=0.0.0.0  --port 9000"
   },
   "author": "luyun",
   "license": "ISC",
@@ -21,6 +28,12 @@
     "babel-preset-es2015": "^6.5.0",
     "babel-runtime": "^5.8.35",
     "css-loader": "^0.23.1",
+    "cssnext-loader": "^1.0.1",
+    "hammerjs": "^2.0.6",
+    "html-loader": "^0.3.0",
+    "html-webpack-plugin": "^1.6.2",
+    "swiper": "^3.2.0",
+    "fastclick": "^1.0.6",
     "eslint": "^2.2.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
@@ -29,11 +42,13 @@
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "vue": "^1.0.16",
+    "vue-router": "^0.7.7",
     "vue-hot-reload-api": "^1.3.2",
     "vue-html-loader": "^1.2.0",
     "vue-loader": "^8.1.4",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.0"
+    "webpack-dev-server": "^1.14.0",
+    "webpack-zepto": "0.0.1"
   }
 }
