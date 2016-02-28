@@ -17,7 +17,8 @@
   "author": "luyun",
   "license": "ISC",
   "dependencies": {
-    "vue": "^1.0.10"
+    "vue": "^1.0.10",
+    "extract-text-webpack-plugin": "^0.8.2"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
