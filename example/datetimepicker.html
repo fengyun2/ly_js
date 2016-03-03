@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>datetimepicker</title>
+    <link rel="stylesheet" type="text/css" href="../src/css/base.css">
+    <link rel="stylesheet" type="text/css" href="../src/css/form.css">
+    <link rel="stylesheet" type="text/css" href="../src/css/table.css">
+    <link rel="stylesheet" type="text/css" href="./css/datetimepicker.css">
+</head>
+<body>
+<div class="container">
+    <form class="form-horizontal" action="datetimepicker_submit" method="get" accept-charset="utf-8">
+        <div class="form-group">
+            <!-- <label for="datetimepicker">选择时间日期</label> -->
+            <input type="text" id="datetimepicker" class="form-control">
+        </div>
+
+        <div class="datetimepicker-cal cal_id-calendar" style="left: 15px; width: 360px; top: 34px;">
+            <table id="datetimepicker-table" class="table table-bordered table_id-calendar" cols="7">
+                <tbody>
+                <tr class="datetimepicker-header">
+                    <th class="datetimepicker-prev-month prev_id-calendar" lyid="prev_id-calendar" colspan="1" title="上一个月">«</th>
+                    <th colspan="5" class="datetimepicker-month month_id-calendar">March 2016</th>
+                    <th class="datetimepicker-next-month next_id-calendar" lyid="next_id-calendar" colspan="1" title="下一个月">»</th>
+                </tr>
+                </tbody>
+                <tbody id="datetimepicker-body-calendar">
+                <tr class="datetimepicker-row row_id-calendar">
+                    <td class="datetimepicker-days">S</td>
+                    <td class="datetimepicker-days">M</td>
+                    <td class="datetimepicker-days">T</td>
+                    <td class="datetimepicker-days">W</td>
+                    <td class="datetimepicker-days">T</td>
+                    <td class="datetimepicker-days">F</td>
+                    <td class="datetimepicker-days">S</td>
+                </tr>
+                <tr class="datetimepicker-row row_id-calendar">
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">&nbsp;</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">&nbsp;</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">1</td>
+                    <td class="datetimepicker-day day_id-calendar d lyid="day_id-calendar"atetimepicker-today">2</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">3</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">4</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">5</td>
+                </tr>
+                <tr class="datetimepicker-row row_id-calendar">
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">6</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">7</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">8</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">9</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">10</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">11</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">12</td>
+                </tr>
+                <tr class="datetimepicker-row row_id-calendar">
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">13</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">14</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">15</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">16</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">17</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">18</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">19</td>
+                </tr>
+                <tr class="datetimepicker-row row_id-calendar">
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">20</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">21</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">22</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">23</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">24</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">25</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">26</td>
+                </tr>
+                <tr class="datetimepicker-row row_id-calendar">
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">27</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">28</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">29</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">30</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">31</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">&nbsp;</td>
+                    <td class="datetimepicker-day day_id-calendar " lyid="day_id-calendar">&nbsp;</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="../src/js/datetimepicker.js"></script>
+</body>
+</html>

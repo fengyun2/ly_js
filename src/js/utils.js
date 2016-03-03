@@ -36,7 +36,10 @@
 	utils.all = {};
 	utils.any = {};
 
-	var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
+	var ArrayProto = Array.prototype,
+	ObjProto = Object.prototype,
+	FuncProto = Function.prototype,
+	StringProto = String.prototype;
 
 	// 将原型缓存到变量中
 	var
@@ -136,6 +139,20 @@
 	        };
 	    }(),
 	    language: (navigator.browserLanguage || navigator.language).toLowerCase()
+	};
+
+	// 获取域名主机
+	utils.getHost = function(url) {
+		var host = "null";
+		if(typeof url === "undefined" || null === url) {
+			url = window.location.href;
+		}
+		var regex = /^\w+\:\/\/([^\/]*).*/;
+		var match = url.match(regex);
+		if(typeof match !== "undefined" && null !== match) {
+			host = match[1];
+		}
+		return host;
 	};
 
 	// 类型检查
@@ -339,6 +356,90 @@
 		}
 		return min + Math.floor(Math.random() * (max - min + 1));
 	};
+
+
+	// 字符串
+	/*----------------------------------------------------------------------------*/
+	// 字符串长度截取
+	utils.cutstr = function(str,len) {
+		var temp;
+		var icount = 0;
+		var patrn = /[^\x00-\xff]/;
+		var strre = "";
+		for (var i = 0; i < str.length; i++) {
+			if (icount < len - 1) {
+				temp = str.substr(i, 1);
+				if (patrn.exec(temp) == null) {
+					icount = icount + 1;
+				} else {
+					icount = icount + 2;
+				}
+				strre += temp;
+			} else {
+				break;
+			}
+		}
+		return strre + "...";
+	};
+	utils.cutstr.api = ['not'];
+
+	// 字符串清除空格
+	StringProto.trim = function() {
+		var reExtraSpace = /^\s*(.*?)\s+$/;
+		return this.replace(reExtraSpace, "$1")
+	};
+
+	// 替换
+	StringProto.replaceAll = function(s1, s2) {
+		return this.replace(new RegExp(s1, "gm"), s2)
+	};
+
+	// 转义html标签
+	utils.htmlEncode = function(text) {
+		return text.replace(/&/g, '&amp').replace(/\"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	};
+
+	// 还原html标签
+	utils.htmlDecode = function(text) {
+		return text.replace(/&amp;/g, '&').replace(/&quot;/g, '\"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+	};
+
+	// 加入收藏夹
+	utils.addFavorite = function(surl,stitle) {
+		try {
+			window.external.addFavorite(surl, stitle);
+		} catch(e) {
+			try {
+				window.sidebar.addPanel(stitle, surl, "");
+			} catch(e) {
+				alert("加入收藏失败，请使用Ctrl+D进行添加");
+			}
+		}
+	};
+
+	// 设为首页
+	utils.setHomepage = function(surl) {
+		if (document.all) {
+			document.body.style.behavior = 'url(#default#homepage)';
+			document.body.setHomePage(surl);
+		} else if (window.sidebar) {
+			if (window.netscape) {
+				try {
+					netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+				} catch(e) {
+					alert("该操作被浏览器拒绝，如果想启用该功能，请在地址栏内输入 about:config,然后将项 signed.applets.codebase_principal_support 值该为true");
+				}
+			}
+			var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
+			prefs.setCharPref('browser.startup.homepage', surl);
+		}
+	};
+
+	// 清除脚本内容
+	utils.trimScript = function (script){
+		return s.replace(/<script.*?>.*?<\/script>/ig, '');
+	};
+
 
 	// 正则验证
 	/*----------------------------------------------------------------------------*/
