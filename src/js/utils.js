@@ -1,8 +1,8 @@
 /*
 * @Author: baby
 * @Date:   2016-02-26 11:24:47
-* @Last Modified by:   baby
-* @Last Modified time: 2016-02-27 12:18:20
+* @Last Modified by:   fengyun2
+* @Last Modified time: 2016-03-08 14:43:49
 */
 /**
  * 工具类
@@ -534,6 +534,53 @@
 	 */
 	 utils.str_to_unix = function(obj){
 	 	return parseInt((new Date(obj)).getTime() / 1000);
+	 };
+
+	/**
+	 * 将时间戳转为几月前。几周前，几天前，几分钟前
+	 * 用法:
+	 * 1. utils.getDateDiff(时间戳(微秒));
+	 */
+	 utils.getDateDiff = function(dateTimeStamp) {
+	 	var minute = 1000 * 60;
+	 	var hour = minute * 60;
+	 	var day = hour * 24;
+	 	var halfamonth = day * 15;
+	 	var month = day * 30;
+	 	var now = new Date().getTime();
+	 	var diffValue = now - dateTimeStamp;
+	 	if(diffValue < 0){return;}
+	 	var monthC =diffValue/month;
+	 	var weekC =diffValue/(7*day);
+	 	var dayC =diffValue/day;
+	 	var hourC =diffValue/hour;
+	 	var minC =diffValue/minute;
+	 	if(monthC>=1){
+	 		result="" + parseInt(monthC) + "月前";
+	 	}
+	 	else if(weekC>=1){
+	 		result="" + parseInt(weekC) + "周前";
+	 	}
+	 	else if(dayC>=1){
+	 		result=""+ parseInt(dayC) +"天前";
+	 	}
+	 	else if(hourC>=1){
+	 		result=""+ parseInt(hourC) +"小时前";
+	 	}
+	 	else if(minC>=1){
+	 		result=""+ parseInt(minC) +"分钟前";
+	 	}else
+	 	result="刚刚";
+	 	return result;
+	 };
+
+	/**
+	 * 将标准时间转为时间戳
+	 * 用法:
+	 * 1. utils.getDateTimeStamp();
+	 */
+	 utils.getDateTimeStamp = function(dateStr) {
+	 	return Date.parse(dateStr.replace(/-/gi,"/"));
 	 };
 	/**
 	 * 时间格式化函数
