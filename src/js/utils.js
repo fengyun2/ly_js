@@ -2,7 +2,7 @@
 * @Author: baby
 * @Date:   2016-02-26 11:24:47
 * @Last Modified by:   fengyun2
-* @Last Modified time: 2016-03-08 14:43:49
+* @Last Modified time: 2016-03-09 19:47:29
 */
 /**
  * 工具类
@@ -308,6 +308,23 @@
 		return !!(ele && ele.nodeType === 1);
 	};
 
+	// 判断是否有某个类
+	utils.hasClass = function(el,cn) {
+		return (' ' + el.className + ' ').indexOf(' ' + cn + ' ') !== -1;
+	};
+
+	// 添加类
+	utils.addClass = function(el,cn) {
+        if (!utils.hasClass(el, cn)) {
+            el.className = (el.className === '') ? cn : el.className + ' ' + cn;
+        }
+	};
+
+	// 移除某个类
+	utils.removeClass = function(el,cn) {
+		el.className = trim((' ' + el.className + ' ').replace(' ' + cn + ' ', ' '));
+	};
+
 	utils.hasHash = function(url) {
 		url = url || window.location.href;
 		var match = url.match(/#(.*)$/);
@@ -329,6 +346,18 @@
 	utils.isDate = function(obj){
 		return toString.call(obj) === '[object Date]';
 	};
+
+	// 是否是星期
+	utils.isWeekend = function(date) {
+        var day = date.getDay();
+        return day === 0 || day === 6;
+	};
+
+	// 是否为闰年
+	utils.isLeapYear = function(year)
+    {
+        return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+    };
 
 	utils.isError = function(obj){
 		return toString.call(obj) === '[object Error]';
@@ -386,12 +415,12 @@
 	// 字符串清除空格
 	StringProto.trim = function() {
 		var reExtraSpace = /^\s*(.*?)\s+$/;
-		return this.replace(reExtraSpace, "$1")
+		return this.replace(reExtraSpace, "$1");
 	};
 
 	// 替换
 	StringProto.replaceAll = function(s1, s2) {
-		return this.replace(new RegExp(s1, "gm"), s2)
+		return this.replace(new RegExp(s1, "gm"), s2);
 	};
 
 	// 转义html标签
@@ -515,7 +544,34 @@
 		return obj.toLocaleDateString();
 	};
 
+	// 格式化日期
+	utils.formatDate = function (date) {
+		var y = date.getFullYear();
+		var m = date.getMonth() + 1;
+		m = m < 10 ? '0' + m : m;
+		var d = date.getDate();
+		d = d < 10 ? ('0' + d) : d;
+		return y + '-' + m + '-' + d;
+	};
 
+	// 格式化日期时间
+	utils.formatDateTime = function (date) {
+		var y = date.getFullYear();
+		var m = date.getMonth() + 1;
+		m = m < 10 ? ('0' + m) : m;
+		var d = date.getDate();
+		d = d < 10 ? ('0' + d) : d;
+		var h = date.getHours();
+		var minute = date.getMinutes();
+		minute = minute < 10 ? ('0' + minute) : minute;
+		return y + '-' + m + '-' + d+' '+h+':'+minute;
+	};
+
+	// 字符串转换为时间戳(微秒)
+	utils.parseDate = function(date) {
+		date = new Date(Date.parse(date.replace(/-/g,'/')));
+		return date.getTime();
+	};
 
 	// 返回当前时间(微秒)
 	utils.now = Date.now || function() {
