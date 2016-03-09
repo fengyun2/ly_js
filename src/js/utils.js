@@ -2,7 +2,7 @@
 * @Author: baby
 * @Date:   2016-02-26 11:24:47
 * @Last Modified by:   fengyun2
-* @Last Modified time: 2016-03-09 19:47:29
+* @Last Modified time: 2016-03-09 19:54:49
 */
 /**
  * 工具类
@@ -315,9 +315,9 @@
 
 	// 添加类
 	utils.addClass = function(el,cn) {
-        if (!utils.hasClass(el, cn)) {
-            el.className = (el.className === '') ? cn : el.className + ' ' + cn;
-        }
+		if (!utils.hasClass(el, cn)) {
+			el.className = (el.className === '') ? cn : el.className + ' ' + cn;
+		}
 	};
 
 	// 移除某个类
@@ -349,15 +349,15 @@
 
 	// 是否是星期
 	utils.isWeekend = function(date) {
-        var day = date.getDay();
-        return day === 0 || day === 6;
+		var day = date.getDay();
+		return day === 0 || day === 6;
 	};
 
 	// 是否为闰年
 	utils.isLeapYear = function(year)
-    {
-        return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
-    };
+	{
+		return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+	};
 
 	utils.isError = function(obj){
 		return toString.call(obj) === '[object Error]';
