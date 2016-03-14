@@ -2,7 +2,7 @@
 * @Author: baby
 * @Date:   2016-02-26 11:24:47
 * @Last Modified by:   fengyun2
-* @Last Modified time: 2016-03-09 19:54:49
+* @Last Modified time: 2016-03-14 14:30:01
 */
 /**
  * 工具类
@@ -121,6 +121,24 @@
 		}
 		return o;
 	};
+
+	/**
+	 *	@description 获取 url 的fragment (即hash中去掉 # 的剩余部分)
+	 *
+	 *	如果没有则返回空字符串
+	 *	如: http://example.com/path/?query=d#123 => 123
+	 *
+	 *	@param {String} url url
+	 *	@returns {String}
+	 */
+	 utils.getUrlFragment = function(url) {
+	 	var hashIndex = url.indexOf('#');
+	 	return hashIndex === -1 ? '':url.slice(hashIndex + 1);
+	 };
+
+
+
+
 	// 获取手机浏览器版本信息
 	utils.browser  = {
 		versions : function(){
@@ -346,6 +364,17 @@
 	utils.isDate = function(obj){
 		return toString.call(obj) === '[object Date]';
 	};
+
+	// description:
+	// 这个方法可以连闰年都可以正确判断出
+	// 参数date可以格式为 xx-xx-xx 或 xxxx-xx-xx或者用 / 或 , 分割
+	// 例子:
+	// util.isCheckDate('2016-01-01');
+	utils.isCheckDate = function(date) {
+		return (new Date(date).getDate()==date.substring(date.length-2));
+	};
+
+
 
 	// 是否是星期
 	utils.isWeekend = function(date) {
@@ -592,6 +621,31 @@
 	 	return parseInt((new Date(obj)).getTime() / 1000);
 	 };
 
+	/** 获取倒计时
+	 *  参数date可以格式为 xx-xx-xx 或 xxxx-xx-xx 或用 / 或 , 分割,也可以用标准时间(new Date('xxxx-xx-xx'))
+	 *
+	 * 用法:
+	 *	utils.getChaTime('xxxx-xx-xx');
+	 */
+	utils.getChaTime = function(date) {
+		var curr_date = new Date();
+		var start_time = 0;
+		if(utils.isDate(date)) {
+			start_time = date.getTime();
+		}else if(utils.isCheckDate(date)) {
+			start_time = date.getTime();
+		}else {
+			return false;
+		}
+		var start = start_time - cur_date.getTime();
+		var startday = Math.floor(start/(1000 * 60 * 60 * 24));
+		if(startday > 0){
+			return startday;
+		}else {
+			return -1;
+		}
+	};
+
 	/**
 	 * 将时间戳转为几月前。几周前，几天前，几分钟前
 	 * 用法:
@@ -631,9 +685,9 @@
 	 };
 
 	/**
-	 * 将标准时间转为时间戳
+	 * 将标准时间转为时间戳(微秒)
 	 * 用法:
-	 * 1. utils.getDateTimeStamp();
+	 * 1. utils.getDateTimeStamp('2016-01-01');
 	 */
 	 utils.getDateTimeStamp = function(dateStr) {
 	 	return Date.parse(dateStr.replace(/-/gi,"/"));
