@@ -2,7 +2,7 @@
 * @Author: baby
 * @Date:   2016-02-26 11:24:47
 * @Last Modified by:   fengyun2
-* @Last Modified time: 2016-03-14 14:30:01
+* @Last Modified time: 2016-03-15 22:33:49
 */
 /**
  * 工具类
@@ -192,7 +192,7 @@
 		return typeof length == 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
 	};
 
-	// 判断是否是对象
+	// 判断是否是对象(或数组)
 	utils.isObject = function(obj) {
 		var type = typeof obj;
 		return type === 'function' || type === 'object' && !!obj;
@@ -498,6 +498,41 @@
 		return s.replace(/<script.*?>.*?<\/script>/ig, '');
 	};
 
+	/**
+	 * 深拷贝
+	 * 参数可以是普通类型、数组、对象
+	 *
+	 */
+	utils.deepCopy = function(source){
+		var result;
+		// 如果需要深拷贝的是对象（或数组）
+		if(utils.isObject(source)){
+			// 如果需要深拷贝的是数组
+			if(utils.isArray(source)){
+				result = [];
+
+				// 遍历该数组，对于数组中每一个值做递归的深拷贝
+				for(var i = 0; i < source.length; i++){
+					result[i] = deep_copy(source[i]);
+				}
+			// 如果需要深拷贝的是对象（但不是数组）
+			}else{
+				result = {};
+
+				// 遍历该对象，对于对象中每一个值做递归的深拷贝
+				for(var i in source){
+					// 对于对象而言，过滤掉原型链上的属性（仅拷贝自定义的属性）
+					if(source.hasOwnProperty(i)) {
+						result[i] = deep_copy(source[i]);
+					}
+				}
+			}
+		// 如果需要深拷贝的不是对象（和数组），那么直接用等号赋值
+		}else{
+			result = source;
+		}
+		return result;
+	};
 
 	// 正则验证
 	/*----------------------------------------------------------------------------*/
