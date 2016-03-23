@@ -2,7 +2,7 @@
 * @Author: baby
 * @Date:   2016-02-26 11:24:47
 * @Last Modified by:   fengyun2
-* @Last Modified time: 2016-03-15 22:33:49
+* @Last Modified time: 2016-03-22 15:17:16
 */
 /**
  * 工具类
@@ -172,6 +172,33 @@
 		}
 		return host;
 	};
+
+	/**
+	* 把图片转为base64编码
+	* @param {String} url
+	* @param {Function} callback
+	* @param {String} [outputFormat='image/png']
+	* @example
+	convertImgToBase64('https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png', function(base64Img){
+	console.log('IMAGE:',base64Img);
+	})
+	*/
+	utils.convertImgToBase64 = function(url, callback, outputFormat) {
+	    var canvas = document.createElement('CANVAS'),
+	        ctx = canvas.getContext('2d'),
+	        img = new Image;
+	    img.crossOrigin = 'Anonymous';
+	    img.onload = function(){
+	        canvas.height = img.height;
+	        canvas.width = img.width;
+	        ctx.drawImage(img,0,0);
+	        var dataURL = canvas.toDataURL(outputFormat || 'image/png');
+	        callback.call(this, dataURL);
+	        canvas = null;
+	    };
+	    img.src = url;
+	}
+
 
 	// 类型检查
 	/*----------------------------------------------------------------------------*/
