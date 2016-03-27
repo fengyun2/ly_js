@@ -1,6 +1,16 @@
-﻿$(function () {
-	window.GLOBAL = window.GLOBAL || {};
-	GLOBAL.arrCity =
+﻿/*
+* @Author: baby
+* @Date:   2016-03-27 15:07:12
+* @Last Modified by:   fengyun2
+* @Last Modified time: 2016-03-27 15:28:03
+*/
+
+/**
+ * 中国城市地区列表
+ */
+
+;(function () {
+	var area =
 		[
 			{ name:"请选择",
 				sub:[
@@ -1993,5 +2003,14 @@
 			{ name:"其他"}
 		];
 
+ 	if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+ 		define(function() {
+ 			return area;
+ 		});
+ 	} else if (typeof module !== 'undefined' && module.exports) {
+ 		module.exports = area;
+ 	} else {
+ 		window.area = area;
+ 	}
 
-});
+ }).call(this);

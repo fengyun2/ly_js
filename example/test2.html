@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+	<script type="text/javascript" src="../src/js/slip.js"></script>
+	<style type="text/css" media="screen">
+		body {
+			padding: 0;
+			margin: 0;
+			background-color: #f2f4f5;
+		}
+		img {
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div class="page page-1"><img src="img/1.jpg"></div>
+		<div class="page page-2"><img src="img/2.jpg"></div>
+		<div class="page page-3"><img src="img/3.jpg"></div>
+		<div class="page page-4"><img src="img/4.jpg"></div>
+	</div>
+	<script type="text/javascript">
+		var ele = document.getElementById("container");
+		Slip(ele, "x").slider();
+	</script>
+</body>
+</html>

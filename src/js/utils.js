@@ -2,7 +2,7 @@
 * @Author: baby
 * @Date:   2016-02-26 11:24:47
 * @Last Modified by:   fengyun2
-* @Last Modified time: 2016-03-22 15:17:16
+* @Last Modified time: 2016-03-27 12:31:00
 */
 /**
  * 工具类
@@ -789,6 +789,37 @@
 	 	replace('w', this_Date.getDay()).
 	 	replace('W', weekday[this_Date.getDay()]);
 	 };
+
+	/**
+	* 日期格式化
+	*
+	* @param format 格式化
+	* @param date 日期
+	*
+	* example:
+	*  var timestamp=Date.now(); //时间戳
+    *  console.log(Date.format("yyyy-MM-dd hh:mm:s",timestamp));
+	*/
+	utils.format = function(format,date) {
+		date instanceof Date||(date=new Date(date));
+		var f={
+			"y+":date.getFullYear(),
+			"M+":date.getMonth()+1,
+			"d+":date.getDate(),
+			"h+":date.getHours(),
+			"m+":date.getMinutes(),
+			"s+":date.getSeconds()
+		},fd;
+		for(var o in f){
+			if(new RegExp(o).test(format))
+			{
+				fd=RegExp.lastMatch;
+				format=format.replace(fd,o==="y+"?f[o].toString().slice(-fd.length):fd.length===1?f[o]:(f[o]+100).toString().slice(-fd.length));
+			}
+		}
+		return format;
+	};
+
 
 	 /*------------------------------------------------------------------------------------------------*/
 
