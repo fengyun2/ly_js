@@ -2,8 +2,9 @@
 * @Author: baby
 * @Date:   2016-02-26 11:24:47
 * @Last Modified by:   fengyun2
-* @Last Modified time: 2016-04-01 10:27:00
+* @Last Modified time: 2016-04-01 10:55:40
 */
+
 /**
  * 工具类
  */
@@ -168,7 +169,7 @@
 	 		relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])1,
 	 		segments: a.pathname.replace(/^\//,'').split('/')
 	 	};
-	 },
+	 };
 
 
 	// 获取手机浏览器版本信息
