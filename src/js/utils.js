@@ -2,7 +2,7 @@
 * @Author: baby
 * @Date:   2016-02-26 11:24:47
 * @Last Modified by:   fengyun2
-* @Last Modified time: 2016-03-27 12:31:00
+* @Last Modified time: 2016-04-01 10:27:00
 */
 /**
  * 工具类
@@ -137,6 +137,38 @@
 	 };
 
 
+	 /**
+	 * 利用 a 标签自动解析URL
+	 *
+	 *
+	 */
+	 utils.parseURL = function(url) {
+	 	var a = document.createElement('a');
+	 	a.href = url;
+	 	return {
+	 		source: url,
+	 		protocol: a.protocol.replace(':',''),
+	 		host: a.hostname,
+	 		port: a.port,
+	 		query: a.search,
+	 		params: (function(){
+	 			var ret = {},
+	 			seg = a.search.replace(/^\?/,'').split('&'),
+	 			len = seg.length, i = 0, s;
+	 			for (;i<len;i++) {
+	 				if (!seg[i]) { continue; }
+	 				s = seg[i].split('=');
+	 				ret[s[0]] = s1;
+	 			}
+	 			return ret;
+	 		})(),
+	 		file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])1,
+	 		hash: a.hash.replace('#',''),
+	 		path: a.pathname.replace(/^([^\/])/,'/$1'),
+	 		relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])1,
+	 		segments: a.pathname.replace(/^\//,'').split('/')
+	 	};
+	 },
 
 
 	// 获取手机浏览器版本信息
@@ -184,19 +216,19 @@
 	})
 	*/
 	utils.convertImgToBase64 = function(url, callback, outputFormat) {
-	    var canvas = document.createElement('CANVAS'),
-	        ctx = canvas.getContext('2d'),
-	        img = new Image;
-	    img.crossOrigin = 'Anonymous';
-	    img.onload = function(){
-	        canvas.height = img.height;
-	        canvas.width = img.width;
-	        ctx.drawImage(img,0,0);
-	        var dataURL = canvas.toDataURL(outputFormat || 'image/png');
-	        callback.call(this, dataURL);
-	        canvas = null;
-	    };
-	    img.src = url;
+		var canvas = document.createElement('CANVAS'),
+		ctx = canvas.getContext('2d'),
+		img = new Image;
+		img.crossOrigin = 'Anonymous';
+		img.onload = function(){
+			canvas.height = img.height;
+			canvas.width = img.width;
+			ctx.drawImage(img,0,0);
+			var dataURL = canvas.toDataURL(outputFormat || 'image/png');
+			callback.call(this, dataURL);
+			canvas = null;
+		};
+		img.src = url;
 	}
 
 
@@ -530,8 +562,8 @@
 	 * 参数可以是普通类型、数组、对象
 	 *
 	 */
-	utils.deepCopy = function(source){
-		var result;
+	 utils.deepCopy = function(source){
+	 	var result;
 		// 如果需要深拷贝的是对象（或数组）
 		if(utils.isObject(source)){
 			// 如果需要深拷贝的是数组
@@ -543,8 +575,8 @@
 					result[i] = deep_copy(source[i]);
 				}
 			// 如果需要深拷贝的是对象（但不是数组）
-			}else{
-				result = {};
+		}else{
+			result = {};
 
 				// 遍历该对象，对于对象中每一个值做递归的深拷贝
 				for(var i in source){
@@ -555,11 +587,11 @@
 				}
 			}
 		// 如果需要深拷贝的不是对象（和数组），那么直接用等号赋值
-		}else{
-			result = source;
-		}
-		return result;
-	};
+	}else{
+		result = source;
+	}
+	return result;
+};
 
 	// 正则验证
 	/*----------------------------------------------------------------------------*/
@@ -689,24 +721,24 @@
 	 * 用法:
 	 *	utils.getChaTime('xxxx-xx-xx');
 	 */
-	utils.getChaTime = function(date) {
-		var curr_date = new Date();
-		var start_time = 0;
-		if(utils.isDate(date)) {
-			start_time = date.getTime();
-		}else if(utils.isCheckDate(date)) {
-			start_time = date.getTime();
-		}else {
-			return false;
-		}
-		var start = start_time - cur_date.getTime();
-		var startday = Math.floor(start/(1000 * 60 * 60 * 24));
-		if(startday > 0){
-			return startday;
-		}else {
-			return -1;
-		}
-	};
+	 utils.getChaTime = function(date) {
+	 	var curr_date = new Date();
+	 	var start_time = 0;
+	 	if(utils.isDate(date)) {
+	 		start_time = date.getTime();
+	 	}else if(utils.isCheckDate(date)) {
+	 		start_time = date.getTime();
+	 	}else {
+	 		return false;
+	 	}
+	 	var start = start_time - cur_date.getTime();
+	 	var startday = Math.floor(start/(1000 * 60 * 60 * 24));
+	 	if(startday > 0){
+	 		return startday;
+	 	}else {
+	 		return -1;
+	 	}
+	 };
 
 	/**
 	 * 将时间戳转为几月前。几周前，几天前，几分钟前
@@ -799,29 +831,29 @@
 	* example:
 	*  var timestamp=Date.now(); //时间戳
     *  console.log(Date.format("yyyy-MM-dd hh:mm:s",timestamp));
-	*/
-	utils.format = function(format,date) {
-		date instanceof Date||(date=new Date(date));
-		var f={
-			"y+":date.getFullYear(),
-			"M+":date.getMonth()+1,
-			"d+":date.getDate(),
-			"h+":date.getHours(),
-			"m+":date.getMinutes(),
-			"s+":date.getSeconds()
-		},fd;
-		for(var o in f){
-			if(new RegExp(o).test(format))
-			{
-				fd=RegExp.lastMatch;
-				format=format.replace(fd,o==="y+"?f[o].toString().slice(-fd.length):fd.length===1?f[o]:(f[o]+100).toString().slice(-fd.length));
-			}
-		}
-		return format;
-	};
+    */
+    utils.format = function(format,date) {
+    	date instanceof Date||(date=new Date(date));
+    	var f={
+    		"y+":date.getFullYear(),
+    		"M+":date.getMonth()+1,
+    		"d+":date.getDate(),
+    		"h+":date.getHours(),
+    		"m+":date.getMinutes(),
+    		"s+":date.getSeconds()
+    	},fd;
+    	for(var o in f){
+    		if(new RegExp(o).test(format))
+    		{
+    			fd=RegExp.lastMatch;
+    			format=format.replace(fd,o==="y+"?f[o].toString().slice(-fd.length):fd.length===1?f[o]:(f[o]+100).toString().slice(-fd.length));
+    		}
+    	}
+    	return format;
+    };
 
 
-	 /*------------------------------------------------------------------------------------------------*/
+    /*------------------------------------------------------------------------------------------------*/
 
 	 // 环境检测
 	 /*-----------------------------------------------------------------------------------------------*/
