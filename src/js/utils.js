@@ -2,7 +2,7 @@
 * @Author: baby
 * @Date:   2016-02-26 11:24:47
 * @Last Modified by:   fengyun2
-* @Last Modified time: 2016-04-01 10:55:40
+* @Last Modified time: 2016-04-01 11:02:04
 */
 
 /**
@@ -112,7 +112,7 @@
 
 
 	// 从 url 中获取参数对象
-	utils.getParamFromUrl = function(){
+	utils.getParamFromUrl = function() {
 		var o = {};
 		var url = location.search.substr(1);
 		url = url.split('&');
@@ -122,6 +122,7 @@
 		}
 		return o;
 	};
+
 
 	/**
 	 *	@description 获取 url 的fragment (即hash中去掉 # 的剩余部分)
