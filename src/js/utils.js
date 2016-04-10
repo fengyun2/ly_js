@@ -2,11 +2,11 @@
 * @Author: baby
 * @Date:   2016-02-26 11:24:47
 * @Last Modified by:   fengyun2
-* @Last Modified time: 2016-04-01 11:02:04
+* @Last Modified time: 2016-04-10 12:12:32
 */
 
 /**
- * 工具类
+ * 工具类(已废弃) 【已经拆分为time.js、is.js、util.js】
  */
 
 // 'use strict';
@@ -57,7 +57,7 @@
 	nativeBind         = FuncProto.bind,
 	nativeCreate       = Object.create;
 
-	// 取反函数
+	// // 取反函数
 	function not(func){
 		return function(){
 			return !func.apply(null,arraySlice.call(arguments));
@@ -164,11 +164,11 @@
 	 			}
 	 			return ret;
 	 		})(),
-	 		file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])1,
-	 		hash: a.hash.replace('#',''),
-	 		path: a.pathname.replace(/^([^\/])/,'/$1'),
-	 		relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])1,
-	 		segments: a.pathname.replace(/^\//,'').split('/')
+	 		// file: (a.pathname.match(/\/([^\/?#]+)$/i) || [,''])1,
+	 		// hash: a.hash.replace('#',''),
+	 		// path: a.pathname.replace(/^([^\/])/,'/$1'),
+	 		// relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [,''])1,
+	 		// segments: a.pathname.replace(/^\//,'').split('/')
 	 	};
 	 };
 

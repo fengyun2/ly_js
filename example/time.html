@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+</head>
+<body>
+	<script type="text/javascript" src="../src/js/time.js"></script>
+	<script type="text/javascript">
+
+
+		var now = new Date();
+        var yesterdayString = new Date(now.setDate(now.getDate() - 1)).toDateString();
+        console.log(yesterdayString);
+        console.log(parseInt((new Date(yesterdayString)).getTime() / 1000));
+        // return is.date(obj) && obj.toDateString() === yesterdayString;
+		// console.log(time.isToday(date / 1000));
+	</script>
+</body>
+</html>
