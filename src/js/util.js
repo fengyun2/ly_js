@@ -2,12 +2,13 @@
  * @Author: fengyun2
  * @Date:   2016-04-10 11:16:38
  * @Last Modified by:   fengyun2
- * @Last Modified time: 2016-04-10 11:32:35
+ * @Last Modified time: 2016-07-13 10:43:34
  */
 
 /*工具类*/
 
-;(function (root, factory) {
+;
+(function(root, factory) {
     // 支持 requirejs 和 amd
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
@@ -21,7 +22,7 @@
         // Browser globals (root is window)
         root.util = factory();
     }
-}(this, function () {
+}(this, function() {
     var root = this || global;
     var previousUtils = root.util;
 
@@ -53,7 +54,7 @@
     var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
 
     // 从 url 中获取参数对象
-    util.getParamFromUrl = function () {
+    util.getParamFromUrl = function() {
         var o = {};
         var url = location.search.substr(1);
         url = url.split('&');
@@ -74,7 +75,7 @@
      *    @param {String} url url
      *    @returns {String}
      */
-    util.getUrlFragment = function (url) {
+    util.getUrlFragment = function(url) {
         var hashIndex = url.indexOf('#');
         return hashIndex === -1 ? '' : url.slice(hashIndex + 1);
     };
@@ -83,7 +84,7 @@
     /**
      * 利用 a 标签自动解析URL
      */
-    util.parseURL = function (url) {
+    util.parseURL = function(url) {
         var a = document.createElement('a');
         a.href = url;
         return {
@@ -92,10 +93,12 @@
             host: a.hostname,
             port: a.port,
             query: a.search,
-            params: (function () {
+            params: (function() {
                 var ret = {},
                     seg = a.search.replace(/^\?/, '').split('&'),
-                    len = seg.length, i = 0, s;
+                    len = seg.length,
+                    i = 0,
+                    s;
                 for (; i < len; i++) {
                     if (!seg[i]) {
                         continue;
@@ -115,9 +118,10 @@
 
     // 获取手机浏览器版本信息
     util.browser = {
-        versions: function () {
-            var u = navigator.userAgent, app = navigator.appVersion;
-            return {//移动终端浏览器版本信息
+        versions: function() {
+            var u = navigator.userAgent,
+                app = navigator.appVersion;
+            return { //移动终端浏览器版本信息
                 trident: u.indexOf('Trident') > -1, //IE内核
                 presto: u.indexOf('Presto') > -1, //opera内核
                 webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
@@ -134,7 +138,7 @@
     };
 
     // 获取域名主机
-    util.getHost = function (url) {
+    util.getHost = function(url) {
         var host = "null";
         if (typeof url === "undefined" || null === url) {
             url = window.location.href;
@@ -154,15 +158,15 @@
      * @param {String} [outputFormat='image/png']
      * @example
      convertImgToBase64('https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png', function(base64Img){
-	console.log('IMAGE:',base64Img);
-	})
+    console.log('IMAGE:',base64Img);
+    })
      */
-    util.convertImgToBase64 = function (url, callback, outputFormat) {
+    util.convertImgToBase64 = function(url, callback, outputFormat) {
         var canvas = document.createElement('CANVAS'),
             ctx = canvas.getContext('2d'),
             img = new Image();
         img.crossOrigin = 'Anonymous';
-        img.onload = function () {
+        img.onload = function() {
             canvas.height = img.height;
             canvas.width = img.width;
             ctx.drawImage(img, 0, 0);
@@ -173,7 +177,7 @@
         img.src = url;
     };
 
-    util.hasClass = function (element, className) {
+    util.hasClass = function(element, className) {
         if (element.classList)
             element.classList.contains(className);
         else
@@ -181,34 +185,34 @@
     };
 
     // 判断该对象是否含有该属性(不包含原型)
-    util.has = function (obj, key) {
+    util.has = function(obj, key) {
         return obj != null && hasOwnProperty.call(obj, key);
     };
 
     // 判断是否是dom节点
-    util.isElement = function (ele) {
+    util.isElement = function(ele) {
         return !!(ele && ele.nodeType === 1);
     };
 
     // 判断是否有某个类
-    util.hasClass = function (el, cn) {
+    util.hasClass = function(el, cn) {
         return (' ' + el.className + ' ').indexOf(' ' + cn + ' ') !== -1;
     };
 
     // 添加类
-    util.addClass = function (el, cn) {
+    util.addClass = function(el, cn) {
         if (!util.hasClass(el, cn)) {
             el.className = (el.className === '') ? cn : el.className + ' ' + cn;
         }
     };
 
     // 移除某个类
-    util.removeClass = function (el, cn) {
+    util.removeClass = function(el, cn) {
         el.className = trim((' ' + el.className + ' ').replace(' ' + cn + ' ', ' '));
     };
 
     // 判断是否有hash值
-    util.hasHash = function (url) {
+    util.hasHash = function(url) {
         url = url || window.location.href;
         var match = url.match(/#(.*)$/);
         var ends = match ? match[1] : '';
@@ -217,7 +221,7 @@
 
 
     // 返回一个介于min,max之间的随机数(包括边界)
-    util.random = function (min, max) {
+    util.random = function(min, max) {
         if (max == null) {
             max = min;
             min = 0;
@@ -228,7 +232,7 @@
     // 字符串
     /*----------------------------------------------------------------------------*/
     // 字符串长度截取
-    util.cutstr = function (str, len) {
+    util.cutstr = function(str, len) {
         var temp;
         var icount = 0;
         var patrn = /[^\x00-\xff]/;
@@ -250,28 +254,28 @@
     };
 
     // 字符串清除空格
-    StringProto.trim = function () {
+    StringProto.trim = function() {
         var reExtraSpace = /^\s*(.*?)\s+$/;
         return this.replace(reExtraSpace, "$1");
     };
 
     // 替换
-    StringProto.replaceAll = function (s1, s2) {
+    StringProto.replaceAll = function(s1, s2) {
         return this.replace(new RegExp(s1, "gm"), s2);
     };
 
     // 转义html标签
-    util.htmlEncode = function (text) {
+    util.htmlEncode = function(text) {
         return text.replace(/&/g, '&amp').replace(/\"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     };
 
     // 还原html标签
-    util.htmlDecode = function (text) {
+    util.htmlDecode = function(text) {
         return text.replace(/&amp;/g, '&').replace(/&quot;/g, '\"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
     };
 
     // 加入收藏夹
-    util.addFavorite = function (surl, stitle) {
+    util.addFavorite = function(surl, stitle) {
         try {
             window.external.addFavorite(surl, stitle);
         } catch (e) {
@@ -284,7 +288,7 @@
     };
 
     // 设为首页
-    util.setHomepage = function (surl) {
+    util.setHomepage = function(surl) {
         if (document.all) {
             document.body.style.behavior = 'url(#default#homepage)';
             document.body.setHomePage(surl);
@@ -302,7 +306,7 @@
     };
 
     // 清除脚本内容
-    util.trimScript = function (script) {
+    util.trimScript = function(script) {
         return s.replace(/<script.*?>.*?<\/script>/ig, '');
     };
 
@@ -311,7 +315,7 @@
      * 参数可以是普通类型、数组、对象
      *
      */
-    util.deepCopy = function (source) {
+    util.deepCopy = function(source) {
         var result;
         // 如果需要深拷贝的是对象（或数组）
         if (utils.isObject(source)) {
@@ -342,6 +346,58 @@
         return result;
     };
 
+    /**
+     * 检验URL链接是否有效
+     * @param  {[type]} url [description]
+     * @return {[type]}     [description]
+     */
+    util.getUrlState = function(url) {
+        var xmlhttp = new ActiveXObject("microsoft.xmlhttp");
+        xmlhttp.Open("GET", URL, false);
+        try {
+            xmlhttp.Send();
+        } catch (e) {} finally {
+            var result = xmlhttp.responseText;
+            if (result) {
+                if (xmlhttp.Status == 200) {
+                    return (true);
+                } else {
+                    return (false);
+                }
+            } else {
+                return (false);
+            }
+        }
+    };
+
+    /**
+     * 回到顶部的通用方法
+     * @param  {[type]} btnId [description]
+     * @return {[type]}       [description]
+     *
+     * usage:
+     * backTop('goTop')
+     */
+    util.backTop = function(btnId) {
+        var btn = document.getElementById(btnId);
+        var d = document.documentElement;
+        var b = document.body;
+        window.onscroll = set;
+        btn.style.display = "none";
+        btn.onclick = function() {
+            btn.style.display = "none";
+            window.onscroll = null;
+            this.timer = setInterval(function() {
+                d.scrollTop -= Math.ceil((d.scrollTop + b.scrollTop) * 0.1);
+                b.scrollTop -= Math.ceil((d.scrollTop + b.scrollTop) * 0.1);
+                if ((d.scrollTop + b.scrollTop) === 0) clearInterval(btn.timer, window.onscroll = set);
+            }, 10);
+        };
+
+        function set() {
+            btn.style.display = (d.scrollTop + b.scrollTop > 100) ? 'block' : "none";
+        }
+    };
 
     return util;
 }));

@@ -1,9 +1,9 @@
 /*
-* @Author: fengyun2
-* @Date:   2016-04-10 15:36:34
-* @Last Modified by:   fengyun2
-* @Last Modified time: 2016-04-10 15:48:09
-*/
+ * @Author: fengyun2
+ * @Date:   2016-04-10 15:36:34
+ * @Last Modified by:   fengyun2
+ * @Last Modified time: 2016-07-13 10:06:24
+ */
 
 /**
  * Usage:
@@ -110,20 +110,20 @@ function ajax(config) {
 
     var sendString = [],
         sendData = config.data;
-    if( typeof sendData === "string" ){
-        var tmpArr = String.prototype.split.call(sendData,'&');
-        for(var i = 0, j = tmpArr.length; i < j; i++){
+    if (typeof sendData === "string") {
+        var tmpArr = String.prototype.split.call(sendData, '&');
+        for (var i = 0, j = tmpArr.length; i < j; i++) {
             var datum = tmpArr[i].split('=');
             sendString.push(encodeURIComponent(datum[0]) + "=" + encodeURIComponent(datum[1]));
         }
-    }else if( typeof sendData === 'object' && !( sendData instanceof String || (FormData && sendData instanceof FormData) ) ){
+    } else if (typeof sendData === 'object' && !(sendData instanceof String || (FormData && sendData instanceof FormData))) {
         for (var k in sendData) {
             var datum = sendData[k];
-            if( Object.prototype.toString.call(datum) == "[object Array]" ){
-                for(var i = 0, j = datum.length; i < j; i++) {
-                        sendString.push(encodeURIComponent(k) + "[]=" + encodeURIComponent(datum[i]));
+            if (Object.prototype.toString.call(datum) == "[object Array]") {
+                for (var i = 0, j = datum.length; i < j; i++) {
+                    sendString.push(encodeURIComponent(k) + "[]=" + encodeURIComponent(datum[i]));
                 }
-            }else{
+            } else {
                 sendString.push(encodeURIComponent(k) + "=" + encodeURIComponent(datum));
             }
         }
