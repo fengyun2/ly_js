@@ -2,7 +2,7 @@
  * @Author: fengyun2
  * @Date:   2016-04-10 10:23:23
  * @Last Modified by:   fengyun2
- * @Last Modified time: 2016-07-13 10:11:19
+ * @Last Modified time: 2016-11-05 12:11:04
  */
 
 /* 时间工具类 */
@@ -278,6 +278,29 @@
         }
         return format;
     };
+
+    /**
+     * 获取当前的日期和时间, 并按照 YYYY-MM-DD 格式化
+     * @return {[type]} [description]
+     */
+    time.getNowFormatDate = function () {
+      var date = new Date()
+      var seperator1 = "-"
+      var seperator2 = ":"
+      var year = date.getFullYear()
+      var month = date.getMonth() + 1
+      var strDate = date.getDate()
+      if (month >= 1 && month <= 9) {
+          month = "0" + month
+      }
+      if (strDate >= 0 && strDate <= 9) {
+          strDate = "0" + strDate
+      }
+      var currentdate = year + seperator1 + month + seperator1 + strDate
+              + " " + date.getHours() + seperator2 + date.getMinutes()
+              + seperator2 + date.getSeconds() + seperator2 + date.getMilliseconds()
+      return currentdate
+    }
 
 
     /*------------------------------------------------------------------------------------------------*/
