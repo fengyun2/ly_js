@@ -18,7 +18,7 @@
   "license": "ISC",
   "dependencies": {
     "vue": "^1.0.10",
-    "extract-text-webpack-plugin": "^0.8.2"
+    "extract-text-webpack-plugin": "^0.9.1"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
@@ -31,7 +31,7 @@
     "css-loader": "^0.23.1",
     "cssnext-loader": "^1.0.1",
     "eslint": "^2.2.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^0.9.1",
     "fastclick": "^1.0.6",
     "file-loader": "^0.8.5",
     "hammerjs": "^2.0.6",
